@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.github.com',
+  baseURL: 'https://api.github.com/repos/facebook/react/issues',
 });
 
 if (process.env.NODE_ENV === 'development') {
