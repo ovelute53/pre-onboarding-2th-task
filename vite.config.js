@@ -1,5 +1,5 @@
-const { defineConfig } = require('vite');
-const reactPlugin = require('@vitejs/plugin-react');
+import { defineConfig } from 'vite';
+import reactPlugin from '@vitejs/plugin-react';
 
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
