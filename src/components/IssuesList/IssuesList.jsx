@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchIssues } from '../issuesSlice';
+import { fetchIssues } from '@/redux/modules/issuesSlice';
 
 function IssuesList() {
   const dispatch = useDispatch();
