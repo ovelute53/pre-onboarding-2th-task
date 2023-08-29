@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from './api';
+import api from '@/utils/api';
 
 export const fetchIssues = createAsyncThunk('issues/fetchIssues', async () => {
   const response = await api.get('/repos/facebook/react/issues?state=open');
