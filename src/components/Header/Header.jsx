@@ -1,11 +1,18 @@
-import React from 'react';
+import styled from 'styled-components';
 
 function Header() {
   return (
-    <header>
+    <StyledHeader>
       <h1>React Page / Issue</h1>
-    </header>
+    </StyledHeader>
   );
 }
 
 export default Header;
+
+const StyledHeader = styled.header`
+  background-color: #282c34;
+  padding: 1rem 0;
+  color: #fff;
+  text-align: center;
+`;
