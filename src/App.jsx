@@ -8,9 +8,9 @@ import Header from '@/components/Header/Header';
 function App() {
   return (
     <Router>
+      <GlobalStyles />
+      <Header />
       <Routes>
-        <GlobalStyles />
-        <Header />
         <Route path="/" exact Component={IssuesList} />
         <Route path="/issues/:issueNumber" Component={IssueDetail} />
       </Routes>
