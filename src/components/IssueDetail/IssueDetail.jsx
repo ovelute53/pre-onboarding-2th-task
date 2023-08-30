@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchIssueDetail } from '@/redux/modules/issuesSlice';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchIssueDetail } from "@/redux/modules/issuesSlice";
 
 function IssueDetail() {
   const { issueNumber } = useParams();
   const dispatch = useDispatch();
-  const issue = useSelector(state => state.issues.currentIssue);
-  const loading = useSelector(state => state.issues.loading);
+  const issue = useSelector((state) => state.issues.currentIssue);
+  const loading = useSelector((state) => state.issues.loading);
 
   useEffect(() => {
     dispatch(fetchIssueDetail(issueNumber));

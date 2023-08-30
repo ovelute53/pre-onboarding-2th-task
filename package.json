@@ -2,6 +2,7 @@
   "name": "vite-preset",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "start": "npm run dev -- --open",
     "dev": "vite --host localhost --port 3000 --cors",
@@ -43,7 +44,7 @@
     "vite": "^4.4.5"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": ".eslintrc.cjs",
+  "main": ".eslintrc.config.js",
   "keywords": [],
   "author": "",
   "license": "ISC"
