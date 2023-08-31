@@ -1,35 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '@/utils/api';
+import { getIssueList, getIssueDetailItem } from '@/utils/issueUtils';
 
-export const fetchIssues = createAsyncThunk('issues/fetchIssues', async (page = 1) => {
-  const response = await api.get(`/repos/facebook/react/issues?state=open&page=${page}`);
-  return response.data;
+export const fetchIssueList = createAsyncThunk(
+  'issues/fetchIssueList',
+  async ({ page, perPage }) => {
+    const response = await getIssueList(page, perPage);
+    return response;
+  },
+);
+
+export const fetchIssueDetail = createAsyncThunk('issues/fetchIssueDetail', async num => {
+  const response = await getIssueDetailItem(num);
+  return response;
 });
 
-export const fetchIssueDetail = createAsyncThunk('issues/fetchIssueDetail', async issueNumber => {
-  const response = await api.get(`/repos/facebook/react/issues/${issueNumber}`);
-  return response.data;
-});
-
-const issuesSlice = createSlice({
+const issueSlice = createSlice({
   name: 'issues',
   initialState: {
-    list: [],
-    currentIssue: null,
+    issueList: [],
+    issueDetail: null,
     loading: false,
     error: null,
   },
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchIssues.pending, state => {
+      .addCase(fetchIssueList.pending, state => {
         state.loading = true;
       })
-      .addCase(fetchIssues.fulfilled, (state, action) => {
+      .addCase(fetchIssueList.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = action.payload;
+        state.issueList = action.payload;
       })
-      .addCase(fetchIssues.rejected, (state, action) => {
+      .addCase(fetchIssueList.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
@@ -38,7 +41,7 @@ const issuesSlice = createSlice({
       })
       .addCase(fetchIssueDetail.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentIssue = action.payload;
+        state.issueDetail = action.payload;
       })
       .addCase(fetchIssueDetail.rejected, (state, action) => {
         state.loading = false;
@@ -47,4 +50,4 @@ const issuesSlice = createSlice({
   },
 });
 
-export default issuesSlice.reducer;
+export default issueSlice.reducer;
