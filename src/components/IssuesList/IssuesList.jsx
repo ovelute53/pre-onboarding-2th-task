@@ -11,7 +11,7 @@ function IssuesList() {
   const [page, setPage] = useState(1);
   const containerRef = useRef(null);
 
-  console.log(issues);
+  console.info(issues);
 
   useEffect(() => {
     dispatch(fetchIssues({ page }));
