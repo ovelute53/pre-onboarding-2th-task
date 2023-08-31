@@ -7,7 +7,7 @@
     "start": "npm run dev -- --open",
     "dev": "vite --host localhost --port 3000 --cors",
     "build": "vite build",
-    "lint": "eslint --cache",
+    "lint": "eslint --cache .",
     "preview": "vite preview",
     "format": "prettier --write --cache .",
     "postinstall": "husky install"
@@ -34,6 +34,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
