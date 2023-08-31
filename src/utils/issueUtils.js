@@ -18,9 +18,7 @@ export const getIssueList = async (page, perPage) => {
 
 export const getIssueDetailItem = async num => {
   try {
-    const response = await api.get(
-      `https://api.github.com/repos/${OWNER}/${REPO}/issues/${number}`,
-    );
+    const response = await api.get(`https://api.github.com/repos/${OWNER}/${REPO}/issues/${num}`);
     console.info(response.data);
     return response.data;
   } catch (err) {
