@@ -6,6 +6,7 @@ import App from './App.jsx';
 import store from '@/redux/store/store.js';
 import IssuesList from '@/components/IssuesList/IssuesList.jsx';
 import IssueDetail from '@/components/IssueDetail/IssueDetail.jsx';
+import ErrorPage from '@/page/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: '/:id',
         element: <IssueDetail />,
+      },
+      {
+        path: '/ErrorPage',
+        element: <ErrorPage />,
+      },
+      {
+        path: '*',
+        element: <ErrorPage />,
       },
     ],
   },
