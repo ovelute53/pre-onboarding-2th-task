@@ -1,20 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import IssuesList from '@/components/IssuesList/IssuesList';
-import IssueDetail from '@/components/IssueDetail/IssueDetail';
-import GlobalStyles from '@/styles/GlobalStyles';
+import { Outlet } from 'react-router-dom';
 import Header from '@/components/Header/Header';
 
 function App() {
   return (
-    <Router>
-      <GlobalStyles />
-      <Header />
-      <Routes>
-        <Route path="/" exact Component={IssuesList} />
-        <Route path="/issues/:issueNumber" Component={IssueDetail} />
-      </Routes>
-    </Router>
+    <Header>
+      <Outlet />
+    </Header>
   );
 }
 
