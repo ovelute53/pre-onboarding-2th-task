@@ -1,15 +1,8 @@
-const initialState = {
-  issues: [],
-  loading: false,
-  error: null,
-};
+import { combineReducers } from 'redux';
+import issueReducer from '@/redux/modules/issuesSlice';
 
-const issuesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    // 여기에 action handlers를 추가합니다.
-    default:
-      return state;
-  }
-};
+const rootReducer = combineReducers({
+  issues: issueReducer,
+});
 
-export default issuesReducer;
+export default rootReducer;
