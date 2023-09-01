@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from '@/components/Header/Header';
 import IssueList from '@/components/IssuesList/IssuesList';
 import { IssueProvider } from '@/context/IssueContext';
+import IssueDetail from '@/components/IssueDetail/IssueDetail';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<IssueList />} />
+          <Route path="/issue/:issueId" element={<IssueDetail />} />
         </Routes>
       </Router>
     </IssueProvider>
