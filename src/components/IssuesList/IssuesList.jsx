@@ -23,7 +23,10 @@ function IssueList() {
     const fetchIssues = async () => {
       try {
         const fetchedIssues = await getIssueList(page, PER_PAGE);
-        setIssues(prevIssues => [...prevIssues, ...fetchedIssues]);
+        const uniqueIssues = fetchedIssues.filter(
+          fetchedIssue => !issues.some(issue => issue.id === fetchedIssue.id),
+        );
+        setIssues(prevIssues => [...prevIssues, ...uniqueIssues]);
       } catch (error) {
         console.error(error);
         navigate('/error');
