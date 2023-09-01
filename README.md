@@ -15,6 +15,7 @@
 [🔗 배포링크](http://wanted-16team.s3-website.ap-northeast-2.amazonaws.com/)
 
 ## 3. 프로젝트 구조
+<img src="https://github.com/ovelute53/pre-onboarding-2th-task/assets/104200167/86cd139c-e59c-48db-b49e-c99f73ccef63" width=300 />
 
 ## 4. 기술 스택
 
@@ -23,9 +24,10 @@
 
 ## 5. UI
 
-1. 이슈 페이지
+### 1. 이슈 페이지
    ![Alt text](image.png)
-2. 상세 페이지
+### 2. 상세 페이지
    ![Alt text](image-1.png)
-3. 에러 페이지
-   ![Alt text](<스크린샷 2023-09-02 오전 4.05.56.png>)
+### 3. 에러 페이지
+   <img src="https://github.com/ovelute53/pre-onboarding-2th-task/assets/104200167/97ae266a-fb2e-471a-8e6f-8d3129fafbd5" />
+
