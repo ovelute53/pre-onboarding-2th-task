@@ -14,15 +14,17 @@ function IssueDetail() {
     const fetchIssueDetail = async () => {
       try {
         const fetchedIssue = await getIssueDetailItem(issueId);
-        setIssue(fetchedIssue);
-        setMarkdownContent(issue.body);
+        if (fetchedIssue) {
+          setIssue(fetchedIssue);
+          setMarkdownContent(fetchedIssue.body);
+        }
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchIssueDetail();
-  });
+  }, [issueId]);
 
   if (!issue) return <Loading />;
 

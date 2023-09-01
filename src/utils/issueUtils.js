@@ -8,7 +8,6 @@ export const getIssueList = async (page, perPage) => {
     const response = await api.get(
       `https://api.github.com/repos/${OWNER}/${REPO}/issues?per_page=${perPage}&page=${page}&sort=comments`,
     );
-    console.info(response.data);
     return response.data;
   } catch (err) {
     console.error(err);
@@ -19,7 +18,6 @@ export const getIssueList = async (page, perPage) => {
 export const getIssueDetailItem = async num => {
   try {
     const response = await api.get(`https://api.github.com/repos/${OWNER}/${REPO}/issues/${num}`);
-    console.info(response.data);
     return response.data;
   } catch (err) {
     throw new Error(String(err));
