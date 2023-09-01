@@ -16,8 +16,6 @@
 
 ## 3. 프로젝트 구조
 
-
-
 ## 4. 기술 스택
 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> <img height=20 src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img 
@@ -30,4 +28,3 @@
 2. 상세 페이지
 
 3. 에러 페이지
-
