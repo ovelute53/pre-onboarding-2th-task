@@ -1,23 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchIssueDetail } from '@/redux/modules/issuesSlice';
+import { getIssueDetailItem } from '@/utils/issueUtils';
 
 function IssueDetail() {
-  const { issueNumber } = useParams();
-  const dispatch = useDispatch();
-  const issue = useSelector(state => state.issues.currentIssue);
-  const loading = useSelector(state => state.issues.loading);
-
+  const [issue, setIssue] = useState(null);
+  const { issueId } = useParams();
   useEffect(() => {
-    dispatch(fetchIssueDetail(issueNumber));
-  }, [dispatch, issueNumber]);
+    const fetchIssueDetail = async () => {
+      try {
+        const fetchedIssue = await getIssueDetailItem(issueId);
+        setIssue(fetchedIssue);
+      } catch (error) {
+        console.error('Error fetching issue detail:', error);
+      }
+    };
 
-  if (loading) return <p>Loading...</p>;
+    fetchIssueDetail();
+  }, [issueId]);
+
+  if (!issue) return <div>Loading...</div>;
 
   return (
     <div>
       <h1>{issue.title}</h1>
+      <div>
+        <strong>Written by:</strong> {issue.user.login}
+      </div>
+      <img src={issue.user.avatar_url} alt={issue.user.login} width={50} />
       <p>{issue.body}</p>
     </div>
   );
