@@ -18,7 +18,6 @@ function IssueDetail() {
         setMarkdownContent(issue.body);
       } catch (error) {
         console.error(error);
-        navigate('*');
       }
     };
 
