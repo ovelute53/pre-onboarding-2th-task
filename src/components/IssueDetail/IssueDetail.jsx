@@ -80,4 +80,9 @@ const IssueContent = styled.div`
   background-color: #f7f7f7;
   padding: 15px;
   border-radius: 4px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 `;
