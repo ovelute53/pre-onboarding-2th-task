@@ -8,7 +8,6 @@ function IssueDetail() {
   const [issue, setIssue] = useState(null);
   const { issueId } = useParams();
   const [markdownContent, setMarkdownContent] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchIssueDetail = async () => {

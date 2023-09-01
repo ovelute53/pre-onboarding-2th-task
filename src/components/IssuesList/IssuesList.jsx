@@ -4,6 +4,7 @@ import { useIssues } from '@/context/IssueContext';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { throttle } from '@/utils/throttle';
+import adImg from '@/assets/wanted.webp';
 
 function IssueList() {
   const { issues, setIssues } = useIssues();
@@ -23,7 +24,7 @@ function IssueList() {
         setIssues(prevIssues => [...prevIssues, ...fetchedIssues]);
       } catch (error) {
         console.error(error);
-        navigate('*');
+        navigate('/error');
       }
     };
 
@@ -47,19 +48,26 @@ function IssueList() {
   }, [handleScroll]);
 
   return (
-    <div>
-      {issues.map(issue => (
-        <IssueContainer key={issue.id} onClick={() => handleIssueClick(issue.number)}>
-          <div>
-            <strong>#{issue.number}</strong> {issue.title}
-          </div>
-          <div>By: {issue.user.login}</div>
-          <div>Date: {new Date(issue.created_at).toLocaleDateString()}</div>
-          <div>Comments: {issue.comments}</div>
-        </IssueContainer>
+    <>
+      {issues.map((issue, index) => (
+        <React.Fragment key={issue.id}>
+          <IssueContainer onClick={() => handleIssueClick(issue.number)}>
+            <div>
+              <strong>#{issue.number}</strong> {issue.title}
+            </div>
+            <div>By: {issue.user.login}</div>
+            <div>Date: {new Date(issue.created_at).toLocaleDateString()}</div>
+            <div>Comments: {issue.comments}</div>
+          </IssueContainer>
+          {index % 5 === 4 && (
+            <a href="ttps://www.wanted.co.kr/" target="_blank" rel="noopener noreferrer">
+              <AdImage src={adImg} alt="Advertisement" />
+            </a>
+          )}
+        </React.Fragment>
       ))}
       <LoadMoreButton onClick={() => setPage(prevPage => prevPage + 1)}>Load More</LoadMoreButton>
-    </div>
+    </>
   );
 }
 
@@ -90,4 +98,10 @@ const LoadMoreButton = styled.button`
   &:hover {
     background-color: #0050a0;
   }
+`;
+
+const AdImage = styled.img`
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
 `;
