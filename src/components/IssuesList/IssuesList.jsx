@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getIssueList } from '@/utils/issueUtils';
 import { useIssues } from '@/context/IssueContext';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { throttle } from '@/utils/throttle';
 
 function IssueList() {
   const { issues, setIssues } = useIssues();
@@ -28,6 +29,22 @@ function IssueList() {
 
     fetchIssues();
   }, [page]);
+
+  const handleScroll = useCallback(
+    throttle(() => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        setPage(prevPage => prevPage + 1);
+      }
+    }, 200),
+    [],
+  );
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
 
   return (
     <div>
