@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { throttle } from '@/utils/throttle';
 import adImg from '@/assets/wanted.webp';
+import Loading from '@/components/LoadingSpinner/LoadingSpinner';
 
 function IssueList() {
   const { issues, setIssues } = useIssues();
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const PER_PAGE = 10;
 
   const navigate = useNavigate();
@@ -48,26 +50,31 @@ function IssueList() {
   }, [handleScroll]);
 
   return (
-    <>
-      {issues.map((issue, index) => (
-        <React.Fragment key={issue.id}>
-          <IssueContainer onClick={() => handleIssueClick(issue.number)}>
-            <div>
-              <strong>#{issue.number}</strong> {issue.title}
-            </div>
-            <div>By: {issue.user.login}</div>
-            <div>Date: {new Date(issue.created_at).toLocaleDateString()}</div>
-            <div>Comments: {issue.comments}</div>
-          </IssueContainer>
-          {index % 5 === 4 && (
-            <a href="ttps://www.wanted.co.kr/" target="_blank" rel="noopener noreferrer">
-              <AdImage src={adImg} alt="Advertisement" />
-            </a>
-          )}
-        </React.Fragment>
-      ))}
-      <LoadMoreButton onClick={() => setPage(prevPage => prevPage + 1)}>Load More</LoadMoreButton>
-    </>
+    <div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          {issues.map((issue, index) => (
+            <React.Fragment key={issue.id}>
+              <IssueContainer onClick={() => handleIssueClick(issue.number)}>
+                <div>
+                  <strong>#{issue.number}</strong> {issue.title}
+                </div>
+                <div>By: {issue.user.login}</div>
+                <div>Date: {new Date(issue.created_at).toLocaleDateString()}</div>
+                <div>Comments: {issue.comments}</div>
+              </IssueContainer>
+              {index % 5 === 4 && (
+                <a href="https://www.wanted.co.kr/" target="_blank" rel="noopener noreferrer">
+                  <AdImage src={adImg} alt="Advertisement" />
+                </a>
+              )}
+            </React.Fragment>
+          ))}
+        </>
+      )}
+    </div>
   );
 }
 

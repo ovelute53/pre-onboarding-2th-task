@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getIssueDetailItem } from '@/utils/issueUtils';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import Loading from '@/components/LoadingSpinner/LoadingSpinner';
 
 function IssueDetail() {
   const [issue, setIssue] = useState(null);
@@ -23,7 +24,7 @@ function IssueDetail() {
     fetchIssueDetail();
   });
 
-  if (!issue) return <div>Loading...</div>;
+  if (!issue) return <Loading />;
 
   return (
     <IssueWrapper>
