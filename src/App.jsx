@@ -4,6 +4,7 @@ import Header from '@/components/Header/Header';
 import IssueList from '@/components/IssuesList/IssuesList';
 import { IssueProvider } from '@/context/IssueContext';
 import IssueDetail from '@/components/IssueDetail/IssueDetail';
+import ErrorPage from '@/page/ErrorPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<IssueList />} />
           <Route path="/issue/:issueId" element={<IssueDetail />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </IssueProvider>

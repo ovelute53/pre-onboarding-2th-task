@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getIssueDetailItem } from '@/utils/issueUtils';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
@@ -8,6 +8,7 @@ function IssueDetail() {
   const [issue, setIssue] = useState(null);
   const { issueId } = useParams();
   const [markdownContent, setMarkdownContent] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchIssueDetail = async () => {
@@ -16,7 +17,8 @@ function IssueDetail() {
         setIssue(fetchedIssue);
         setMarkdownContent(issue.body);
       } catch (error) {
-        console.error('Error fetching issue detail:', error);
+        console.error(error);
+        navigate('*');
       }
     };
 

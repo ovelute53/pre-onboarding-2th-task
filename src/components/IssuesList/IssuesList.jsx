@@ -21,7 +21,8 @@ function IssueList() {
         const fetchedIssues = await getIssueList(page, PER_PAGE);
         setIssues(prevIssues => [...prevIssues, ...fetchedIssues]);
       } catch (error) {
-        console.error('Error fetching issues:', error);
+        console.error(error);
+        navigate('*');
       }
     };
 
