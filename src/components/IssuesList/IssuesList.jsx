@@ -97,19 +97,6 @@ const IssueContainer = styled.div`
   }
 `;
 
-const LoadMoreButton = styled.button`
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #0366d6;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  &:hover {
-    background-color: #0050a0;
-  }
-`;
-
 const AdImage = styled.img`
   display: block;
   margin: 20px auto;
