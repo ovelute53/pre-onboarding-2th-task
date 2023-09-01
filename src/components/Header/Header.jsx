@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-function Header() {
+function Header({ children }) {
   return (
     <StyledHeader>
       <h1>React Page / Issue</h1>
+      {children}
     </StyledHeader>
   );
 }
