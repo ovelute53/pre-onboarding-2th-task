@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getIssueList } from '@/utils/issueUtils';
 import { useIssues } from '@/context/IssueContext';
+import { useNavigate } from 'react-router-dom';
 
 function IssueList() {
   const { issues, setIssues } = useIssues();
   const [page, setPage] = useState(1);
   const PER_PAGE = 10;
+
+  const navigate = useNavigate();
+
+  const handleIssueClick = issueId => {
+    navigate(`/issue/${issueId}`);
+  };
 
   useEffect(() => {
     const fetchIssues = async () => {
@@ -23,7 +30,9 @@ function IssueList() {
   return (
     <div>
       {issues.map(issue => (
-        <div key={issue.id}>{issue.title}</div>
+        <div key={issue.id} onClick={() => handleIssueClick(issue.number)}>
+          {issue.title}
+        </div>
       ))}
       <button onClick={() => setPage(prevPage => prevPage + 1)}>Load More</button>
     </div>
