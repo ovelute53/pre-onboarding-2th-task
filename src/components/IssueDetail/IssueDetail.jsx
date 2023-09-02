@@ -6,38 +6,45 @@ import ReactMarkdown from 'react-markdown';
 import Loading from '@/components/LoadingSpinner/LoadingSpinner';
 
 function IssueDetail() {
-  const [issue, setIssue] = useState(null);
   const { issueId } = useParams();
-  const [markdownContent, setMarkdownContent] = useState('');
+  const [data, setData] = useState({
+    issue: null,
+    markdownContent: '',
+  });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchIssueDetail = async () => {
       try {
         const fetchedIssue = await getIssueDetailItem(issueId);
         if (fetchedIssue) {
-          setIssue(fetchedIssue);
-          setMarkdownContent(fetchedIssue.body);
+          setData({
+            issue: fetchedIssue,
+            markdownContent: fetchedIssue.body,
+          });
         }
       } catch (error) {
         console.error(error);
+        setError(error);
       }
     };
 
     fetchIssueDetail();
   }, [issueId]);
 
-  if (!issue) return <Loading />;
+  if (error) return <div>Error loading the issue.</div>;
+  if (!data.issue) return <Loading />;
 
   return (
     <IssueWrapper>
-      <IssueNumber>Issue #{issue.number}</IssueNumber>
-      <IssueTitle>{issue.title}</IssueTitle>
+      <IssueNumber>Issue #{data.issue.number}</IssueNumber>
+      <IssueTitle>{data.issue.title}</IssueTitle>
       <AuthorWrapper>
-        <AuthorImage src={issue.user.avatar_url} alt={issue.user.login} />
-        <AuthorName>Written by: {issue.user.login}</AuthorName>
+        <AuthorImage src={data.issue.user.avatar_url} alt={data.issue.user.login} />
+        <AuthorName>Written by: {data.issue.user.login}</AuthorName>
       </AuthorWrapper>
       <IssueContent>
-        <ReactMarkdown>{markdownContent}</ReactMarkdown>
+        <ReactMarkdown>{data.markdownContent}</ReactMarkdown>
       </IssueContent>
     </IssueWrapper>
   );
@@ -85,31 +92,58 @@ const AuthorName = styled.strong`
 `;
 
 const IssueContent = styled.div`
-  background-color: #fafafa;
+  background-color: #ffffff;
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-top: 20px;
+  line-height: 1.5;
 
-  img {
-    max-width: 100%;
-    height: auto;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    line-height: 1.25;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.3em;
   }
+
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+
+  a {
+    color: #0366d6;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   pre {
     padding: 16px;
     overflow: auto;
     line-height: 1.45;
     background-color: #2e2e2e;
     color: white;
-    border-radius: 3px;
+    border-radius: 6px;
+    margin: 16px 0;
   }
 
   code {
     padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
-    background-color: #ffe8d4;
-    border-radius: 10px;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
   }
 
   pre > code {
@@ -117,5 +151,33 @@ const IssueContent = styled.div`
     margin: 0;
     background-color: transparent;
     border: 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin-top: 8px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  blockquote {
+    margin: 16px 0;
+    padding: 0 15px;
+    color: #6a737d;
+    border-left: 0.25em solid #e0e0e0;
   }
 `;
