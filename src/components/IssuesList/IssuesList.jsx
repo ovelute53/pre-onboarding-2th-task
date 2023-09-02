@@ -2,25 +2,30 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { getIssueList } from '@/utils/issueUtils';
 import { useIssues } from '@/context/IssueContext';
 import { useNavigate } from 'react-router-dom';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { throttle } from '@/utils/throttle';
 import adImg from '@/assets/wanted.webp';
 import Loading from '@/components/LoadingSpinner/LoadingSpinner';
+
+const PER_PAGE = 10;
 
 function IssueList() {
   const { issues, setIssues } = useIssues();
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const PER_PAGE = 10;
 
   const navigate = useNavigate();
 
-  const handleIssueClick = issueId => {
-    navigate(`/issue/${issueId}`);
-  };
+  const handleIssueClick = useCallback(
+    issueId => {
+      navigate(`/issue/${issueId}`);
+    },
+    [navigate],
+  );
 
   useEffect(() => {
     const fetchIssues = async () => {
+      setIsLoading(true);
       try {
         const fetchedIssues = await getIssueList(page, PER_PAGE);
         const uniqueIssues = fetchedIssues.filter(
@@ -31,19 +36,21 @@ function IssueList() {
         console.error(error);
         navigate('/error');
       }
+      setIsLoading(false);
     };
 
     fetchIssues();
-  }, [page]);
+  }, [page, issues, navigate, setIssues]);
 
-  const handleScroll = useCallback(
-    throttle(() => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-        setPage(prevPage => prevPage + 1);
-      }
-    }, 200),
-    [],
-  );
+  const throttledFunction = throttle(() => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+      setPage(prevPage => prevPage + 1);
+    }
+  }, 200);
+
+  const handleScroll = useCallback(() => {
+    throttledFunction();
+  }, [throttledFunction]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
