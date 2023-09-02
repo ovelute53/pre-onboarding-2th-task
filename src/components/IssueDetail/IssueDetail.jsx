@@ -50,6 +50,29 @@ const IssueWrapper = styled.div`
   border-radius: 4px;
   max-width: 800px;
   margin: 20px auto;
+  pre {
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    background-color: grey;
+    color: white;
+    border-radius: 3px;
+  }
+
+  code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: orange;
+    border-radius: 10px;
+  }
+
+  pre > code {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+  }
 `;
 
 const IssueTitle = styled.h1`
