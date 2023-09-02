@@ -92,19 +92,52 @@ export default React.memo(IssueList);
 const IssueContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  border: 1px solid #e1e4e8;
-  border-radius: 5px;
-  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin: 20px 0;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
   &:hover {
-    background-color: #f6f8fa;
+    transform: scale(1.02);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  div {
+    margin-bottom: 8px;
+  }
+
+  div:last-child {
+    margin-bottom: 0;
+  }
+  div {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #4a5568;
+  }
+
+  div:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    color: #2d3748;
   }
 `;
 
 const AdImage = styled.img`
   display: block;
-  margin: 20px auto;
+  margin: 25px auto;
+  padding: 10px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
 `;

@@ -30,6 +30,7 @@ function IssueDetail() {
 
   return (
     <IssueWrapper>
+      <IssueNumber>Issue #{issue.number}</IssueNumber>
       <IssueTitle>{issue.title}</IssueTitle>
       <AuthorWrapper>
         <AuthorImage src={issue.user.avatar_url} alt={issue.user.login} />
@@ -50,29 +51,6 @@ const IssueWrapper = styled.div`
   border-radius: 4px;
   max-width: 800px;
   margin: 20px auto;
-  pre {
-    padding: 16px;
-    overflow: auto;
-    line-height: 1.45;
-    background-color: grey;
-    color: white;
-    border-radius: 3px;
-  }
-
-  code {
-    padding: 0.2em 0.4em;
-    margin: 0;
-    font-size: 85%;
-    background-color: orange;
-    border-radius: 10px;
-  }
-
-  pre > code {
-    padding: 0;
-    margin: 0;
-    background-color: transparent;
-    border: 0;
-  }
 `;
 
 const IssueTitle = styled.h1`
@@ -85,6 +63,13 @@ const AuthorWrapper = styled.div`
   align-items: center;
   margin-top: 10px;
   margin-bottom: 20px;
+`;
+
+const IssueNumber = styled.span`
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 10px;
+  display: block;
 `;
 
 const AuthorImage = styled.img`
@@ -100,12 +85,37 @@ const AuthorName = styled.strong`
 `;
 
 const IssueContent = styled.div`
-  background-color: #f7f7f7;
-  padding: 15px;
-  border-radius: 4px;
+  background-color: #fafafa;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-top: 20px;
 
   img {
     max-width: 100%;
     height: auto;
+  }
+  pre {
+    padding: 16px;
+    overflow: auto;
+    line-height: 1.45;
+    background-color: #2e2e2e;
+    color: white;
+    border-radius: 3px;
+  }
+
+  code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: #ffe8d4;
+    border-radius: 10px;
+  }
+
+  pre > code {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
   }
 `;
