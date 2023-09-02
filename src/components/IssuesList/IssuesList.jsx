@@ -25,7 +25,6 @@ function IssueList() {
 
   useEffect(() => {
     const fetchIssues = async () => {
-      setIsLoading(true);
       try {
         const fetchedIssues = await getIssueList(page, PER_PAGE);
         const uniqueIssues = fetchedIssues.filter(
@@ -43,7 +42,7 @@ function IssueList() {
   }, [page, issues, navigate, setIssues]);
 
   const throttledFunction = throttle(() => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+    if (!isLoading && window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
       setPage(prevPage => prevPage + 1);
     }
   }, 200);
