@@ -39,7 +39,7 @@ function IssueList() {
     };
 
     fetchIssues();
-  }, [page, issues, navigate, setIssues]);
+  }, [page, navigate, setIssues]);
 
   const throttledFunction = throttle(() => {
     if (!isLoading && window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
@@ -87,7 +87,7 @@ function IssueList() {
   );
 }
 
-export default IssueList;
+export default React.memo(IssueList);
 
 const IssueContainer = styled.div`
   display: flex;
