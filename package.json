@@ -10,7 +10,8 @@
     "lint": "eslint --cache",
     "preview": "vite preview",
     "format": "prettier --write --cache .",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "deploy": "npm run build && aws s3 sync dist/ s3://wanted-16team --delete"
   },
   "lint-staged": {
     "src/**/*.{jsx,js}": [
